@@ -7,4 +7,8 @@
 4. Select and delete multiple photos and videos simultaneously for easier management.
 5. View detailed metadata and information for each photo and video asset.
 6. Experience fast loading and smooth browsing of extensive media collections.
-   
+7. Easily share local photos and videos across apps using the integrated share API.
+
+
+
+
