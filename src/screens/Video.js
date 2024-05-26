@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import MyContext from '../context/context';
 import { ScrollView } from 'react-native';
 import Loader from '../components/Loader';
+import { useNavigation } from '@react-navigation/native';
 
 const VideoScreen = ({route}) => {
   const {id} = route.params;
@@ -13,12 +14,15 @@ const VideoScreen = ({route}) => {
   const [status, setStatus] = useState({});
   const {checkPermission,setIsLoading,isLoading} = useContext(MyContext);
   const [videoUri,setVideoUri] = useState('');
+  const [title,setTitle] = useState('');
+  const navigation = useNavigation();
 
   const getAssetById = async (id) => {
     try {
       const asset = await MediaLibrary.getAssetInfoAsync(id);
       console.log(asset.uri);
       setVideoUri(asset.uri)
+      setTitle(asset.filename);
       //localUri
 
     } catch (error) {
@@ -36,6 +40,11 @@ const VideoScreen = ({route}) => {
     }
     
   },[id]);
+  useEffect(()=>{
+  navigation.setOptions({
+    title:title
+  })
+  },[title])
 
   return (
     <View style={styles.container}>

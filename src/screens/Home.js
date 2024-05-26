@@ -31,7 +31,10 @@ const Home = () => {
       
       setIsLoading(true);
       const result = checkPermission();
+    
+
       if(result){
+        console.log(`True`);
        getAlbums();  
       }
 
@@ -45,18 +48,26 @@ const Home = () => {
 
    async function getAlbums() {
     
-    const fetchedAlbums = await MediaLibrary.getAlbumsAsync({
+    const allAlbums  = await MediaLibrary.getAlbumsAsync({
     includeSmartAlbums: true,
-    mediaType: ['photo','video'],
     }); 
 
-    
-    // Filter out albums where the title contains any numeric characters
-    const validAlbums = fetchedAlbums.filter(album => 
-      album && album.id && album.title && /^[^\d]+$/.test(album.title)
-    );
-    setAlbums(validAlbums);
-    console.log(validAlbums);
+    const filteredAlbums = [];
+
+    for (const album of allAlbums) {
+      const { assets } = await MediaLibrary.getAssetsAsync({
+        album: album.id,
+        mediaType: ['photo', 'video'],
+        first: 1, // We only need to check if there's at least one asset of the desired types
+      });
+      if (assets.length > 0) {
+        filteredAlbums.push(album);
+      }
+    }
+
+    setAlbums(filteredAlbums);
+
+    console.log(filteredAlbums);
     setIsLoading(false);
    
     }

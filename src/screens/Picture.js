@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
 import { Menu,PaperProvider,Button,Divider } from 'react-native-paper';
+import { GestureHandlerRootView,PanGestureHandler } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
@@ -72,7 +73,7 @@ const Picture = ({route}) => {
       headerRight:()=>(
         <>
       
-        <Pressable style={{margin:10}} onPress={openMenu}>
+        <Pressable style={{margin:10}} onPress={() => openMenu()}>
           <Entypo name="dots-three-vertical" size={24} color="white" />
         </Pressable>
         </>
@@ -83,6 +84,7 @@ const Picture = ({route}) => {
 
   return (
     <View style={styles.container}>
+      
       {isLoading ?
        <ScrollView contentContainerStyle={styles.loaderContainer}>
        <Loader  />
@@ -110,8 +112,13 @@ const Picture = ({route}) => {
         </Menu>
       </View>
 
-      
-       <Image  source={{uri:imgUri}} style={styles.fullscreenImage}/>
+        {imgUri &&
+       <Image  source={{uri:imgUri}} style={styles.fullscreenImage}/>   
+        }
+        
+     
+     
+
        </>
        
       }

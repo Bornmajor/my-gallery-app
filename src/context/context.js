@@ -12,6 +12,7 @@ export const MyContextProvider = (props) => {
   const [permissionResponse, requestPermission] = MediaLibrary.usePermissions();
   const [isLoading,setIsLoading] = useState(true);
   const [permitStatus,setPermitStatus] = useState(true);
+  const [isdeleteActive,setIsDeleteActive] = useState(false);
 
   const checkPermission = async() =>{
     const permissions = await MediaLibrary.getPermissionsAsync();
@@ -146,6 +147,19 @@ export const MyContextProvider = (props) => {
       };
     
 
+      const [selectedIds, setSelectedIds] = useState([]);
+
+     
+      
+      //  const uncheckAll = () => {
+      //   setSelectedIds([]);
+      // };
+
+      // useEffect(() => {
+      //   console.log('Selected IDs:', selectedIds);
+      // }, [selectedIds]);
+    
+
 
 
   return (
@@ -162,7 +176,9 @@ export const MyContextProvider = (props) => {
         formatDate,
         onShare,
         showFeedback,
-        confirmDelete
+        confirmDelete,
+        isdeleteActive,setIsDeleteActive,
+        selectedIds, setSelectedIds
 
       }}
     >

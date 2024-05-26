@@ -15,12 +15,12 @@ const AlbumCard = ({title,noOfItems,album_id}) => {
     const options = {
       album: albumId,
        // Include these media types
-    mediaType: ['photo'],
-    first:1,
+    mediaType: ['photo','video'],
     sortBy: [[MediaLibrary.SortBy.creationTime, false]], // Sort by creation time in descending order
     };
   
     const coverImage = await MediaLibrary.getAssetsAsync(options);
+
     setCoverImg(coverImage.assets[0].uri);
     // console.log(coverImage.assets[0].uri);
     // console.log(assetList.length);
@@ -44,12 +44,13 @@ const AlbumCard = ({title,noOfItems,album_id}) => {
      <View  style={styles.albumTitle}>
      <Text numberOfLines={1} style={{fontWeight:'600',width:100,marginTop:5}} ellipsizeMode='tail'>{title}</Text>   
      <Text >({noOfItems})</Text>
-     {/* <Text>{id}</Text> */}
+     {/* <Text>{coverImg}</Text> */}
      </View>     
     </Pressable>
 
   )
 }
+
 
 const styles = StyleSheet.create({
    albumImg:{

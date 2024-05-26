@@ -4,7 +4,7 @@
     "slug": "my-gallery-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/myicon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bornmaja.mygalleryapp"
     },
     "web": {
       "bundler": "metro",
@@ -31,8 +32,15 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "entryPoint": "./src/App.js",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c6d6a25c-c0c4-4464-8e35-16324b48a7e0"
+      }
     }
-    ,
-    "entryPoint": "./src/App.js"
   }
 }
